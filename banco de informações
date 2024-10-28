@@ -1,9 +1,9 @@
  programa {
 
     ///banco de informações
-   inteiro bag=1, bcon=1, bsen=123
-   caracter volta, deposito
-   real saldo = 10.000, limite = 500, total = limite + saldo 
+   inteiro bag=1, bcon=1, bsen=123, i
+   caracter volta 
+   real saldo = 10000, limite = 500, total = limite + saldo, deposito, s
  
  funcao vetor(){
   para(i=1; i<1000; i++){
@@ -35,14 +35,13 @@
     funcao menu(){
     
     inteiro opcao
-   faca{
+   
    escreva(" Escolha uma operação abaixo \n")
    escreva("\n1- saldo | 2- Extrato | 3- Saque | 4-Depósito | 5- Sair \n")
    escreva("Opção: \n")
-    leia(opcao)
-   limpa()
- }
-
+   leia(opcao)
+  limpa()
+ 
    escolha(opcao){
 
    caso 1:
@@ -70,16 +69,69 @@
    }
    }
      
+     funcao saldo(){ 
+      faca{
+      escreva("Deseja voltar para o inicio s|n \n")
+      escreva("Saldo", saldo, "\n")
+      escreva("Limite", limite, "\n")
+      escreva("Total", total, "\n")
+      escreva("----------------------\n\n")
 
-  funcao saque(){
- escreva("")
+      escreva("Deseja voltar para o menu principal s|n \n")
+      }
+     enquanto(volta != "s")
+     limpa()
+     menu()
+     }
+ funcao extrato(){
+  faca{
+    escreva( saldo + deposito,"\n\n")
+   escreva("---------------------\n\n")
+
+   escreva("deseja voltar ao menu principal s|n \n")
   }
+  enquanto (volta != "s")
+  limpa()
+  menu()
+ }
+  
+ funcao deposito(){
+  faca{
+    escreva("Qual valor deseja depositar:")
+    leia(deposito)
+    escreva("------------------------------\n\n")
+
+    escreva("Deseja voltar ao menu principal s|n? ")
+    leia(volta)
+  }
+  enquanto(volta != "s")
+  limpa()
+  menu()
+ }
+
+ funcao saque(){
+  faca{
+    escreva("Qual valor você deseja sacar?\n")
+    leia(s)
+    escreva("-----------------------------------\n\n")
+
+ se(saldo < s){
+ escreva("valor indisponivel")
+
+ }
+ s - saldo
+ escreva("Deseja voltar ao menu principal")
+ leia(volta)
+  }
+  enquanto (volta != "s")
+ leia()
+ menu()
+ }
 
 
+ 
 
-
-
-
+  
 
 
 
