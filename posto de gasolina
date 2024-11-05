@@ -3,8 +3,8 @@ programa {
     
  
 
-  inteiro  km, lts, es, opc
-  real v,p = 4.90
+  inteiro km, opc, es
+     real  v
 
 
   escreva("************ BEM VINDO AO NOSSO POSTO DE GASOLINA  *************\n")
@@ -12,7 +12,7 @@ programa {
   leia(km)
 
   escreva("valor da gasolina:  ",6.29,"\n")
-  escreva("valor do álcool:  ",4.90,"\n")
+  escreva("valor do álcool:  ", 4.90,"\n")
 
 
   escreva("deseja colocar álcool ou gasolina: ")
@@ -34,7 +34,10 @@ programa {
  caso contrario: escrever ("\nOpção inválida!!")
 
  }
+  }
+
  funcao gasolina(){
+  inteiro km, r
 
   escreva("digite a quantidade de km da sua viagem\n")
  leia(km)
@@ -44,12 +47,12 @@ escreva("seu km é ", km, " com gasolina você terá o custo de ", r)
 }
 
 funcao alcool(){
-
+inteiro km, r1
  escreva("digite a quantidade de de km sua viagem\n")
  leia(km)
            r1=(km/10)*4.19
 
 escrever("seu km é ", km, " com Álcool você terá o custo de ", r1)
 }
-  }
-}
+} 
+  
