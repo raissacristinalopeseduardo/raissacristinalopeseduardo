@@ -11,16 +11,13 @@ programa {
   escreva("Quantos KM tem sua viagem: ")
   leia(km)
 
-  escreva("valor da gasolina:  ",6.29,"\n")
-  escreva("valor do álcool:  ", 4.90,"\n")
-
-
-  escreva("deseja colocar álcool ou gasolina: ")
-  leia(es)
-
   v=(km/12)*6.29
 
-  escreva("seu KM é: ",km, "\nE seu total de gastos foi de: ",v)
+  escreva("seu KM é: ",km, "\nE seu total de gastos foi de: ",v,"\n")
+ limpa()
+
+  escreva("valor da gasolina:  ",6.29,"\n")
+  escreva("valor do álcool:  ",4.90,"\n")
 
  escreva("Qual você deseja usar? \n 1-Gasolina ou 2-Álcool\n")
   leia(opc)
@@ -31,7 +28,7 @@ programa {
 
  caso 2: alcool()pare
 
- caso contrario: escrever ("\nOpção inválida!!")
+ caso contrario: escrever ("\n!Opção inválida!")
 
  }
   }
@@ -47,12 +44,12 @@ escreva("seu km é ", km, " com gasolina você terá o custo de ", r)
 }
 
 funcao alcool(){
-inteiro km, r1
+inteiro k, r1
  escreva("digite a quantidade de de km sua viagem\n")
- leia(km)
-           r1=(km/10)*4.19
+ leia(k)
+           r1=(k/10)*4.19
 
-escrever("seu km é ", km, " com Álcool você terá o custo de ", r1)
+escreva("seu km é ", k, " com Álcool você terá o custo de ", r1)
 }
 } 
   
