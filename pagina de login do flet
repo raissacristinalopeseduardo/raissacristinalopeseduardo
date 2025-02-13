@@ -1,0 +1,100 @@
+import flet as ft 
+
+def main(page: ft.Page):
+
+    page.bgcolor = "#000000"
+    page.window_center()
+    page.window_width = '1000'
+    page.window_height = '600'
+    page.window_resizable = False
+    page.window_maximizable = False
+    page.horizontal_alignment = 'start'
+
+#tela de login
+    r1 = ft.Row([ 
+
+        ft.Container(
+
+            width= 450,
+            height= 540,
+            bgcolor= '#FFFFFF',
+            border_radius= 5,
+            content= ft.Column([ 
+      
+      
+                ft.Text('Faça Seu Login',size= 50, color= '#000000', weight=ft.FontWeight.W_900, selectable=True),
+                
+                ft.Container(content = ft.Column([
+
+                     ft.TextField(label= 'E-mail', prefix_icon= ft.icons.EMAIL, width= 350, border_radius= 30),
+                     ft.TextField(label= 'Senha', prefix_icon= ft.icons.PASSWORD, password= True, can_reveal_password=True,  width= 350, border_radius= 30),
+
+                    ])
+                    
+                 ),
+
+                ft.TextButton(text=('Esqueceu Sua Senha ?'), on_click= True),
+                ft.FilledButton(content=ft.Text ('Entrar'),  width= 173, height= 50, on_click= lambda e: Entrar(e) ),   
+                ft.TextButton(text=('Não Possui Cadastro. Realizar Cadastro Agora'), on_click= True, ),
+
+            ], spacing= 30,horizontal_alignment= ft.CrossAxisAlignment.CENTER, alignment= ft.MainAxisAlignment.CENTER, )
+                            
+        ),
+#iamgem da tela de login
+        ft.Container(
+
+            width= 510,
+            height= 540,
+            content= ft.Column([
+            
+                ft.Image( src=('login.png'), fit= ft.ImageFit.CONTAIN, width= 300, height= 300), 
+                ft.Text('A melhor experiêcia de Login\n que você Já teve na sua vida', size= 22 , color= '#FFFFFF'),
+
+                            ], spacing=50, horizontal_alignment= ft.CrossAxisAlignment.CENTER, alignment=ft.MainAxisAlignment.CENTER)
+
+        )
+   
+    ])
+
+
+#Sistema de cadastro
+    cadastro = ft.Container(
+        
+        bgcolor= '#FFFFFF',
+        width= 1000,
+        height= 600,
+        border_radius= 5,
+
+        content= ft.Column([
+             ft.CupertinoFilledButton(text='Voltar', on_click= lambda e: Voltar(e), width= 170, height= 50, ),
+             ft.TextField(label= 'CPF',  width= 350, border_radius= 5,),
+             ft.TextField(label= 'Nome',  width= 350, border_radius= 5),
+             ft.TextField(label= 'Data de Nacimento', width= 350, border_radius= 5),
+             ft.TextField(label= 'Nome da Mãe', width= 350, border_radius= 5),
+             
+
+
+        ], spacing= 20,)
+
+    )
+
+    def Entrar(e: ft.ControlEvent):
+        page.remove(r1)
+        page.add(cadastro)
+
+
+    def Voltar(e: ft.ControlEvent):
+        page.remove(cadastro)
+        page.add(r1)
+
+    def validaracesso(e: ft.ControlEvent):
+        page.remove()
+
+#finalição de pagina do flet
+    page.add(r1, cadastro,)
+
+
+ft.app(target= main)
+
+ 
+ 
