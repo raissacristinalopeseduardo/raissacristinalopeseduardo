@@ -61,16 +61,26 @@ def main(page: ft.Page):
     cadastro = ft.Container(
         
         bgcolor= '#FFFFFF',
-        width= 1000,
-        height= 600,
+        width= 1500,
+        height= 900,
         border_radius= 5,
+        padding= 30, 
 
         content= ft.Column([
-             ft.CupertinoFilledButton(text='Voltar', on_click= lambda e: Voltar(e), width= 170, height= 50, ),
-             ft.TextField(label= 'CPF',  width= 350, border_radius= 5,),
-             ft.TextField(label= 'Nome',  width= 350, border_radius= 5),
-             ft.TextField(label= 'Data de Nacimento', width= 350, border_radius= 5),
-             ft.TextField(label= 'Nome da Mãe', width= 350, border_radius= 5),
+             
+             ft.Text('Dados do Usuário',size= 20, color= '#000000', weight=ft.FontWeight.W_500, selectable=True),
+             ft.Row([
+                 ft.TextField(label= 'CPF',  width= 250, border_radius= 5,),
+                 ft.TextField(label= 'Nome',  width= 350, border_radius= 5),
+                 ft.TextField(label= 'Data de Nacimento', width= 150, border_radius= 5),
+
+             ]),
+             ft.Row([
+                
+                 ft.TextField(label= 'Nome da Mãe', width= 350, border_radius= 5),
+             ]),
+            ft.CupertinoFilledButton(text='Voltar', on_click= lambda e: Voltar(e), width= 170, height= 50, ), 
+             
              
 
 
@@ -91,7 +101,7 @@ def main(page: ft.Page):
         page.remove()
 
 #finalição de pagina do flet
-    page.add(r1, cadastro,)
+    page.add(r1,)
 
 
 ft.app(target= main)
