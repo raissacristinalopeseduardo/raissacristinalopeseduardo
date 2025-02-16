@@ -55,7 +55,7 @@ def main(page: ft.Page):
         
         content = ft.Column([
     
-            ft.Image(src = ("login-seguro.png"), fit = ft.ImageFit.CONTAIN, width = 300, height = 300),
+            ft.Image(src = ("login.png"), fit = ft.ImageFit.CONTAIN, width = 300, height = 300),
             ft.Text("A melhor experiência de login \n que você já teve na sua vida", size = 22, color = '#FFFFFF'),
             
             
@@ -105,8 +105,8 @@ def main(page: ft.Page):
     ft.Container(
 
                 bgcolor = '#FFFFFF',
-                width = 1000,
-                height = 240,
+                width = 1200,
+                height = 600,
                 border_radius = 5,
 
                 content = ft.Column([
@@ -140,11 +140,24 @@ def main(page: ft.Page):
                         ],
                     ),
                 ],
-            )
+            ),
+            ft.NavigationBar(
+               destinations=[
+            ft.NavigationBarDestination(icon=ft.icons.ACCOUNT_BOX, label="Cadastro"),
+            ft.NavigationBarDestination(icon=ft.icons.COMMUTE, label="Commute"),
+            ft.NavigationBarDestination(
+                icon=ft.icons.EXIT_TO_APP_SHARP,
+                selected_icon=ft.icons.EXIT_TO_APP_SHARP,
+                label="Exit",
+            ),
+        ]
+    )
+
         ])
     ) 
 ])
-
+    
+    
     
       
 
