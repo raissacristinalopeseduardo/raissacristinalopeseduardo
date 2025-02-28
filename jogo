@@ -10,20 +10,24 @@ VERDE = (0, 255, 0)
 VERMELHO = (255, 0, 0)
 AZUL = (0, 0, 255)
 
-ALTURA = 400
+ALTURA = 500
 LARGURA = 600
 
 
 
+TAMANHO_COBRA = 20
 
 
 # Código para Criar tela
                     #(tela) variavel criada para tamanho da tela
 tela = pg.display.set_mode((LARGURA, ALTURA))
+
 # Variável para o nome do Jogo
 titulo = pg.display.set_caption('Snake')
+
+# Código para criação de imagem para o jogo
+fundo = pg.image.load("f.png")
 # Variável do tamanho da cobra do Jogo
-TAMANHO_COBRA = 20
 clock = pg.time.Clock()
 # Variável criada para atualização do game
 
@@ -43,6 +47,7 @@ def jogo():
     movimento_y = 0
     cobra = []
     comprimento_cobra = 1
+    pontuacao = 0
 
     comida_x = random.randrange(0, LARGURA - TAMANHO_COBRA, TAMANHO_COBRA)
     comida_y = random.randrange(0, ALTURA - TAMANHO_COBRA, TAMANHO_COBRA)
@@ -87,24 +92,29 @@ def jogo():
             if segmento == cabeça_cobra:
                 fim_de_jogo = True
 
-        tela.fill(PRETO)
+        tela.blit(fundo,( 0,0))
         desenhar(cobra)
         pg.draw.rect(tela, VERMELHO, [comida_x, comida_y, TAMANHO_COBRA, TAMANHO_COBRA])
 
         if x_cobra == comida_x and y_cobra == comida_y:
             comida_x = random.randrange(0, LARGURA - TAMANHO_COBRA, TAMANHO_COBRA)
             comida_y = random.randrange(0, ALTURA - TAMANHO_COBRA, TAMANHO_COBRA)
-            comprimento_cobra += 1
+            comprimento_cobra += 5
+            pontuacao +=  1   
+
+        f = pg.font.SysFont(None,30)
+        g = f.render(f'SCORE: {pontuacao}', True, BRANCO)    
+        tela.blit(g, [LARGURA // 30, ALTURA // 30])           
 
         
         pg.display.update()
-        clock.tick(15)
+        clock.tick(30)
 
     fonte = pg.font.SysFont(None, 55)
     texto_fim = fonte.render("Fim de Jogo", True, AZUL)
     tela.blit(texto_fim, [LARGURA // 3, ALTURA // 3])
     pg.display.update()
-    pg.time.wait(2000)
+    pg.time.wait(20000)
 # Código para finalizar função
     pg.quit()
 
