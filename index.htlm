@@ -1,0 +1,114 @@
+<h1>Olá, Mundo! </h1>
+<h2> Sub-Titulo </h2>
+<p>Eu estou escrevendo</p>
+<i>Estou escrevendo em italico</i>
+<hr>
+<span>Texto dentro do span</span>
+<br>
+<u>Chamar site</u>
+<br>
+<a href="https://www.globo.com/" target="_blank"> Site da Globo</a>
+<hr>
+
+<h2> Rodapé</h2>
+<ul>
+    <li>Sorvete</li>
+    <li>Carro</li>
+    <li>Avião</li>
+    <li>casa</li>
+</ul>
+<hr>
+
+<h2> Tabela</h2>
+<table border="2">
+<tr>
+    <th>Nome</th>
+    <th>Sobre Nome</th>
+    <th>Idade</th>
+    <th>Gênero</th>
+
+</tr>
+<tr>
+    <th>Raissa</th>
+    <th>Lopes</th>
+    <th>17</th>
+    <th></th>
+
+</tr>
+
+</table>
+
+
+<hr>
+<h2> Listagem</h2>
+<ol>
+    <li>Arroz</li>
+    <li>Feijão</li>
+    <li>Macarrão</li>
+    <li>Picanha</li>
+    <li>Café</li>
+</ol>
+
+<ol>
+    <li>Cardapio do dia</li>
+    <ul>
+        <li>Cane</li>
+        <li>Lasanha</li>
+        <li>Batata</li>
+        <li>Vinagrete</li>
+        <li>Macarrão</li>
+    </ul>
+    <br>
+    <li>Sobremesas</li>
+    <ul>
+        <li>Sorvete</li>
+        <li>Pudim</li>
+        <li>Torta De limão</li>
+    </ul>
+</ol>
+<hr>
+<fieldset>
+<h2>Formulario</h2>
+<form action="">
+    <label for="">Nome:</label>
+    <input type="text">
+    <br>
+    <label for="">Sobrenome:</label>
+    <input type="text">
+    <br>
+    <label for="">Data de Nacimento</label>
+    <input type="date">
+    <br>
+    <label for="">Gênero</label>
+    <input type="checkbox" >
+    <label for="">Masculino</label>
+    <input type="checkbox">
+    <label for="">Feminino</label>
+    <input type="checkbox">
+    <label for="">Outros</label>
+    <br>
+    <label for="">Gênero</label>
+    <select name="" id="">
+        <option value=""Selected disabled> selecione</option>
+        <option value="">Masculino</option>
+        <option value="">Feminino</option>
+        <option value="">Outros</option>
+    </select>
+    <br>
+    <label for="">Cor do Cabelo</label>
+    <select name="" id="">
+        <option value=""Selected disabled> selecione</option>
+        <option value="">Preto</option>
+        <option value="">Castanho</option>
+        <option value="">Loiro</option>
+        <option value="">Outros</option>
+    </select>
+    <br>
+    <button type="submit">Salvar</button>
+
+
+
+</form>
+</fieldset>
+
+
