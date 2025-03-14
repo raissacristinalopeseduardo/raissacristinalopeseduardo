@@ -1,0 +1,16 @@
+<?php
+$nome= "Raissa";
+$idade= 17;
+$maioridade= 18;
+$trabalho= "Programção";
+echo "Qual é sua idade ". $idade;
+echo "<br>";
+echo "<br>";
+if( $idade < $maioridade ){
+    echo"você é menor de idade! <br>";
+
+}else{
+    echo"$nome, você é maior de idade!, e você trabalha com $trabalho <br>";
+}
+
+?>
