@@ -1,18 +1,28 @@
 <?php
 
 $mensagen = "";
-$classeAlerta = ""
+$classeAlerta = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST{'numero_escolhido'})){
+    $numero_escolhido = intval[$_POST['numero_escolhido']];
+    $numero_sorteado= rand(1, 10);
 
 
+    if($numero_escolhido == $numero_sorteado ){
+        $mensagen = "Parasbéns!!, Você acertou o número!!, o número sorteado foi  $numero_sorteado";
+        $classeAlerta = "alert_success";
 
-
+    }else{
+        $mensagen= "Que pena :(, Você errou o número,  tente novamente <br> O número sorteado era  $numero_sorteado ";
+        $classeAlerta = "alet_danger";
+    }
+}
 
 
 ?>
 
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,20 +36,18 @@ $classeAlerta = ""
                 <div class="card shadow-lg p-3">
                     <h1 class="mb-3">Sortéio de Número</h1>
                         <p>Escolha um Número de 1 a 10 e veja se você acerta!!! </p>
-                    <form action="" method="post">
+                    <form action="" method="POST">
                         <div class="mb-3">
                             <label for="numero_escolhido" class="form-label">Digite seu Número</label>
-                            <input type="number" for="numero_escolhido" class="form-control" min="1" max="10" required >
+                            <input type="number" name="numero_escolhido" class="form-control" min="1" max="10" required >
                         </div>
                         <button type="submit" class="btn btn-dark  w-50">Enviar</button>
-
-
-
-
-
-
                     </form>
+                    <?php if($mensagem): ?>
+                    <div class="alert mt-3 <?= $classeAlerta ?>"></div>
+                        <?php $classeAlerta ?>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
