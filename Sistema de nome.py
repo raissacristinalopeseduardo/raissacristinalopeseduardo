@@ -10,7 +10,7 @@ def main(page:Page):
     page.window.resizable = False
 
 
-    t= TextField(label= "Nome")
+    t= TextField(label= "Nome", autofocus= True)
     b= FilledButton(text="salvar",on_click= lambda e: salvar(e))
     g= Text("",size=50)
 
@@ -24,6 +24,9 @@ def main(page:Page):
         else:
             g.value= "ERRADO"
             g.color=colors.RED_100
+
+        t.value=""
+        page.update()
 
 
     page.add(t, b, g )
