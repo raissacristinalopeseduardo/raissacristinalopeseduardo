@@ -1,68 +1,98 @@
 from flet import *
 
-def main(page: Page):
+def main (page:Page):
     page.window.center()
-    page.window.width = 768
+    page.window_width  = 768
     page.window.height = 500
-    page.bgcolor = "#ffffff"
+    page.bgcolor = "white"
     page.padding = 0
 
-    lgn = Text("Sign In", height = 150, color = "#000000", size = 40, weight = FontWeight.W_900)
-    lgn2 = Text("Ou se não tem cadastro, fazer cadastro agora!", color = "#000000")
-    email = TextField(label = "Email", prefix_icon = icons.EMAIL)
-    password = TextField(label = "Senha", prefix_icon = icons.PASSWORD, can_reveal_password = True, password = True)
-    button2 = FilledButton(text = "Voltar", on_click = lambda e: voltar(e))
+    #Tela de login
+    titulolog = Text("Login", color="black", size=40, weight= FontWeight.W_900 )
+    emaillog = TextField(label="Digite seu usuário", prefix_icon= icons.EMAIL, password= True )
+    senhalog = TextField(label="Digite sua senha", prefix_icon= icons.PASSWORD, password= True)
+    btnlog = FilledButton(text="Entrar", style = ButtonStyle(bgcolor = '#FF0000', color = '#FFFFFF'))
 
-    #-------------------------------------------------------------------------------------------------------------------------------
+    #Botao de mudar para tela de cadastro
+    txtcad = Text("Ainda nao possui uma conta? Faça seu cadastro", size = 20)
+    mudarpracad = FilledButton(text="Faça seu cadastro", style = ButtonStyle(bgcolor = '#000000', color = '#FFFFFF'), on_click= lambda e: mudarpracad(e))
 
-    cad = Text("Sign In", height = 150, color = "#000000", size = 40, weight = FontWeight.W_900)
-    log = Text("Ou se não tem cadastro, fazer cadastro agora!", color = "#000000", size = 5)
-    cademail = TextField(label = "Cadastre seu email", height = 50, prefix_icon = icons.EMAIL, width = 80)
-    password1 = TextField(label = "Crie sua senha", height = 50, prefix_icon = icons.PASSWORD, can_reveal_password = True, password = True)
-    password2 = TextField(label = "Confirme sua senha", height = 50, prefix_icon = icons.PASSWORD, can_reveal_password = True, password = True)
-    button1 = FilledButton(text = "Entrar", on_click = lambda e: entrar(e))
+    #.............................................................................................
+
+    #Tela de cadastro
+    titulocad = Text("Cadastro", color="black", size = 30, weight= FontWeight.W_900)
+    emailcad = TextField(label="Digite seu email", prefix_icon= icons.EMAIL)
+    senhacad = TextField(label="Crie uma senha", prefix_icon= icons.PASSWORD, password= True)
+    confirmesenha = TextField(label="Confirme a senha", prefix_icon= icons.PASSWORD, password= True )
+    btncad = FilledButton(text="Cadastrar", style = ButtonStyle(bgcolor = '#FF0000', color = '#FFFFFF'))
+
+    #Botao de mudar para login
+    txt = Text("Ja possui uma conta? Faça login", size = 20)
+    mudarpralog = FilledButton(text="Login", style = ButtonStyle(bgcolor = '#000000', color = '#FFFFFF'), on_click= lambda e: mudarpralog(e) )
 
     cadastro = Row([
 
-        Container(height = 490, width = 385, bgcolor = "#000000",
-                  border_radius = border_radius.only(top_right = 150, bottom_right = 150),
+        Container( height=500, width=334, bgcolor="#FF0000", border_radius = border_radius.only(top_right=100, bottom_right=100), padding = 30,
+            content= Column([
+                
+                        txt, mudarpralog
 
-                  content = Row([button2
-                                 
-                                 ], alignment = MainAxisAlignment.CENTER, vertical_alignment = CrossAxisAlignment.CENTER)), 
+            ], alignment = MainAxisAlignment.CENTER, horizontal_alignment= CrossAxisAlignment.CENTER),
+            
+         ),
 
-        Container(height = 490, width = 385, bgcolor = "#ffffff",
-                  content = Column([
-                      
-                            cad, log, cademail, password1, password2
-                                    
-    ],alignment = MainAxisAlignment.CENTER, horizontal_alignment= CrossAxisAlignment.CENTER))
-                                
-                  
-    ], vertical_alignment = CrossAxisAlignment.CENTER, alignment = MainAxisAlignment.CENTER)
+        Container( height=500, width=404, padding = 30,
+            content= Column([
+                titulocad, emailcad, senhacad, confirmesenha, btncad
+            ], alignment = MainAxisAlignment.CENTER, horizontal_alignment= CrossAxisAlignment.CENTER)
+        )
 
-    login = Row([
-
-         Container(height = 490, width = 385, bgcolor = "#ffffff",
-                  
-                  content = Column([lgn, lgn2, email, password])),
-
-        Container(height = 490, width = 385, bgcolor = "#000000", border_radius = border_radius.only(top_left = 150, bottom_left= 150),
-                  content = Row([button1])
-                  
-                  )
     ])
 
-    def entrar(e):
-        cadastro.visible = True
-        login.visible = False
-        page.update()
 
-    def voltar(e):
+    login = Row([
+       
 
-        login.visible = True
-        cadastro.visible = False
-        page.update()
-    
-    page.add(login, cadastro)
-app(target = main)
+        Container(
+            height=500,width=404,padding =30,
+            content= Column([
+                titulolog, emaillog, senhalog, btnlog
+            ], alignment = MainAxisAlignment.CENTER, horizontal_alignment= CrossAxisAlignment.CENTER)
+        ),
+
+         Container(
+            height=500, width=364, bgcolor="#FF0000", border_radius = border_radius.only(top_left=100, bottom_left=100), padding =30,
+           
+            content= Column([
+                txtcad, mudarpracad
+            ], alignment = MainAxisAlignment.CENTER, horizontal_alignment= CrossAxisAlignment.CENTER)
+        )
+
+    ])
+
+
+    def mudarpracad(e):
+        page.clean()
+        page.add(cadastro)
+
+    def mudarpralog(e):
+        page.clean()
+        page.add(login)
+
+
+    page.add(login)
+
+app(target=main)
+
+
+
+
+
+
+
+
+
+
+
+
+
