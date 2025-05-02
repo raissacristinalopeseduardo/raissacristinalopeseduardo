@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<title>Click the Square Game</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    color: #fff;
+  }
+  #game-container {
+    background: #2c2f4a;
+    border-radius: 16px;
+    width: 350px;
+    max-width: 100vw;
+    height: 600px;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    user-select: none;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  #scoreboard {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    padding: 8px 0;
+    border-bottom: 1px solid #44476a;
+  }
+  #scoreboard span {
+    font-weight: 600;
+  }
+  #game-area {
+    position: relative;
+    flex-grow: 1;
+    margin-top: 16px;
+    background: radial-gradient(circle at center, #393c6a, #232545);
+    border-radius: 12px;
+    overflow: hidden;
+    touch-action: manipulation;
+  }
+  #square {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: #ff6b6b;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(255,107,107,0.75);
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  #square:active {
+    transform: scale(0.85);
+  }
+  #start-button {
+    background: #ff6b6b;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 14px;
+    margin-top: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255,107,107,0.6);
+    transition: background 0.3s ease;
+    user-select: none;
+  }
+  #start-button:hover {
+    background: #ff5252;
+  }
+  #timer {
+    font-weight: 600;
+  }
+
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 380px) {
+    #game-container {
+      height: 100vh;
+      border-radius: 0;
+      width: 100vw;
+      padding: 12px;
+    }
+    #square {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div id="game-container" role="main" aria-label=" Game Clilck">
+    <header>
+      <h1>Click the Square</h1>
+    </header>
+    <div id="scoreboard">
+      <span>Score: <span id="score">0</span></span>
+      <span>Time: <span id="timer">30</span>s</span>
+    </div>
+    <div id="game-area" aria-live="polite">
+      <!-- The moving square will appear here -->
+    </div>
+    <button id="start-button" aria-label="Start game">Start Game</button>
+  </div>
+
+<script>
+  (function(){
+    const gameArea = document.getElementById('game-area');
+    const scoreSpan = document.getElementById('score');
+    const timerSpan = document.getElementById('timer');
+    const startButton = document.getElementById('start-button');
+a
+    let score = 0;
+    let timeLeft = 30; // seconds
+    let gameTimer = null;
+    let moveTimer = null;
+    let gameRunning = false;
+
+    // Create the square element
+    const square = document.createElement('div');
+    square.id = 'square';
+    square.setAttribute('role', 'button');
+    square.setAttribute('tabindex', '0');
+    square.setAttribute('aria-label', 'Target square, click to score points');
+    gameArea.appendChild(square);
+
+    // Function to move square to a random position inside game area
+    function moveSquare() {
+      const areaRect = gameArea.getBoundingClientRect();
+      const sqSize = square.offsetWidth;
+      const maxX = areaRect.width - sqSize;
+      const maxY = areaRect.height - sqSize;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      square.style.left = randomX + 'px';
+      square.style.top = randomY + 'px';
+    }
+
+    // When user clicks or taps the square
+    function squareClicked() {
+      if (!gameRunning) return;
+      score++;
+      scoreSpan.textContent = score;
+      moveSquare();
+    }
+
+    square.addEventListener('click', squareClicked);
+    square.addEventListener('touchstart', (e) => {
+      e.preventDefault(); // prevent click event from firing twice on mobile
+      squareClicked();
+    });
+
+    // Start game function
+    function startGame() {
+      if (gameRunning) return; // prevent double start
+
+      score = 0;
+      timeLeft = 30;
+      scoreSpan.textContent = score;
+      timerSpan.textContent = timeLeft;
+      gameRunning = true;
+      startButton.disabled = true;
+      square.style.display = 'block';
+      moveSquare();
+
+      gameTimer = setInterval(() => {
+        timeLeft--;
+        timerSpan.textContent = timeLeft;
+        if (timeLeft <= 0) {
+          endGame();
+        }
+      }, 1000);
+    }
+
+    // End game function
+    function endGame() {
+      gameRunning = false;
+      clearInterval(gameTimer);
+      square.style.display = 'none';
+      startButton.disabled = false;
+      alert('Game over! Your final score is: ' + score);
+    }
+
+    // Initially hide the square
+    square.style.display = 'none';
+
+    startButton.addEventListener('click', startGame);
+
+    // Accessibility: allow pressing Enter or Space on square to "click"
+    square.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        squareClicked();
+      }
+    });
+  })();
+</script>
+</body>
+</html>
+
+```
+
